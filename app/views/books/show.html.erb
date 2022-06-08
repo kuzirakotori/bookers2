@@ -1,0 +1,62 @@
+<main>
+  <div class="container px-5 px-sm-0">
+    <div class="row">
+
+      <%= render 'users/form', user: @user,book: @book %>   <!--form共有部分-->
+
+      <div class="col-md-8 offset-md-1">
+        <h2>Book detail</h2>
+        <table class="table">
+          <tbody>
+            <tr>
+              <% if @user.id==current_user.id %>
+                <td>
+                  <%= link_to user_path(@user.id) do %>
+                    <%= image_tag @user.get_profile_image(100,100) %><br>
+                    <%= @user.name %>
+                  <% end %>
+                </td>
+                <td><%= link_to @books.title, book_path(@books.id) %></td>
+                <td><%= @books.body %></td>
+                <!--いいね機能-->
+                <td id="favorite_buttons_<%= @books.id %>">
+                  <%= render "favorites/favorite-btn" ,books: @books %>
+                </td>
+                <td>
+                  コメント数:<%= @books.book_comments.count %>
+                </td>
+                <td><%= link_to "Edit",edit_book_path(@books.id),class: "btn btn-sm btn-success edit_book_11021" %></td>
+                <td><%= link_to "Destroy",book_path(@books.id),method: :delete,data: {confirm: "本当に削しますか？"},class: "btn btn-sm btn-danger destroy_book_11038"%></td>
+              <% else %>
+                <td>
+                  <%= link_to user_path(@user.id) do %>
+                    <%= image_tag @user.get_profile_image(100,100) %><br>
+                    <%= @user.name %>
+                  <% end %>
+                </td>
+                <td><%= link_to @books.title, book_path(@books.id) %></td>
+                <td><%= @books.body %></td>
+                <!--いいね機能-->
+                <td id="favorite_buttons_<%= @books.id %>">
+                  <%= render "favorites/favorite-btn" ,books: @books %>
+                </td>
+                <td>
+                  コメント数:<%= @books.book_comments.count %>
+                </td>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+        <!--コメントリスト-->
+        <div class="comment_list_<%= @books.id %>">
+          <%= render "book_comments/comment-list",book_comments: @book_comments,books: @books,user: @user %>
+        </div>
+        <!--コメントフォーム-->
+        <div>
+          <%= render "book_comments/comment-form",books: @books,book_comment: @book_comment %>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+

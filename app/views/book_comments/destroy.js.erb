@@ -1,0 +1,1 @@
+$(".comment_list_<%= @books.id %>").html("<%= j(render 'book_comments/comment-list',book_comments: @book_comments,books: @books,user: @user) %>");
