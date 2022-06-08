@@ -41,7 +41,10 @@
                 <td id="favorite_buttons_<%= book.id %>">
                   <%= render "favorites/favorite-btn" ,books: book %>
                 </td>
-                <th></th>
+                <!--コメントカウント-->
+                <td>
+                  コメント数:<%= @book_comment.count %>
+                </td>
                 <th colspan="5"></th>
               </tr>
             <% end %>

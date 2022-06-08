@@ -40,8 +40,8 @@
                 <td id="favorite_buttons_<%= @books.id %>">
                   <%= render "favorites/favorite-btn" ,books: @books %>
                 </td>
-                <td>
-                  コメント数:<%= @books.book_comments.count %>
+                <td class="comment_count_<%= @books.id %>">
+                  <%= render "book_comments/comment-count",books: @books %>
                 </td>
               <% end %>
             </tr>
