@@ -24,8 +24,8 @@
               <th></th>
               <th>グループ名</th>
               <th>紹介文</th>
+              <th>メンバー数</th>
               <th></th>
-              <th colspan="4"></th>
             </tr>
           </thead>
           <tbody>
@@ -36,8 +36,11 @@
                 </th>
                 <th><%= link_to group.name,group_path(group.id) %></th>
                 <th><%= group.introduction %></th>
-                <th><%= link_to "Edit",edit_group_path(group.id),class: "btn btn-sm btn-success edit_book_11021" %></th>
-                <th colspan="4"></th>
+                <th><%= group.group_users.count %></th>
+                <!--オーナーの場合Edit表示-->
+                <% if group.owner_id == current_user.id %>
+                  <td><%= link_to "Edit",edit_group_path(group.id),class: "btn btn-sm btn-success edit_book_11021" %></td>
+                <% end %>
               </tr>
             <% end %>
           </tbody>

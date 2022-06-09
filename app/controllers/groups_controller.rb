@@ -13,7 +13,8 @@ class GroupsController < ApplicationController
     @user = User.find(params[:id])
     @book = Book.new
     @group = Group.find(params[:id])
-  end  
+    @groups = Group.all
+  end
 
   def create
     @group = Group.new(groups_params)

@@ -1,12 +1,21 @@
 <main>
   <div class="container px-5 px-sm-0">
     <div class="row">
-
-      <%= render 'users/form', user: @user,book: @book %>   <!--form共有部分-->
+      <!--form共有部分-->
+      <%= render 'users/form', user: @user,book: @book %>
 
       <div class="col-md-8 offset-md-1">
         <h2>Book Detail</h2>
         <table class="table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>グループ名</th>
+              <th>紹介文</th>
+              <th>メンバー</th>
+              <th></th>
+            </tr>
+          </thead>
           <tbody>
             <tr>
                 <td>
@@ -16,10 +25,20 @@
                 </td>
                 <td><%= @group.name %></td>
                 <td><%= @group.introduction %></td>
-                <!--編集ボタン（オーナーのみ表示）-->
-                <% if @group.owner_id == current_user.id %>
-                  <td><%= link_to "Edit",edit_group_path(@group.id),class: "btn btn-sm btn-success edit_book_11021" %></td>
-                <% end %>
+                <!--メンバー表示-->
+                <td>
+                  <%# @users.each do |user| %>
+                    メンバー表示[作成中]<%#= user.name %>
+                  <%# end %>
+                </td>
+                <!--joinボタン-->
+                <td>
+                  <% if @group.join_by?(@user) %>
+                    <%= link_to "Leave this group",groupuser_path,method: :delete,class: "btn btn-danger" %>    
+                  <% else %>
+                    <%= link_to "Join this group",groupuser_path,method: :patch,class: "btn btn-success" %>    
+                  <% end %>
+                </td>
             </tr>
           </tbody>
         </table>
