@@ -1,3 +1,6 @@
+  <!--検索欄-->
+  <%= render "searches/serach" %>
+  
   <div class="container px-5 px-sm-0">
     <div class="row">
 
@@ -5,6 +8,7 @@
 
       <div class="col-md-8 offset-md-1">
         <h2>Users</h2>
+        <%= link_to "グループを作成する",new_group_path %>|<%= link_to "グループ一覧",groups_path %>
         <table class="table table-hover table-inverse">
           <thead>
             <tr>

@@ -75,11 +75,12 @@
         </div>
       </nav>
     </header>
-    <%= render "searches/serach" %>
-    <% if flash[:notice]%>
-      <%= flash[:notice] %>
-    <% end %>
-    <%= yield %>
+    <div class="mt-3">
+      <% if flash[:notice]%>
+        <%= flash[:notice] %>
+      <% end %>
+      <%= yield %>
+    </div>
     <%= render "homes/footer" %>
   </body>
 </html>
